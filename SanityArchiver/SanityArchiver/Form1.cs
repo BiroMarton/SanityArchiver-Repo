@@ -16,6 +16,9 @@ namespace SanityArchiver
     public partial class Form1 : Form
     {
         DriveInfo[] allDrives = DriveInfo.GetDrives();
+        private String pathString;
+        private string rootPath;
+
         public Form1()
         {
             InitializeComponent();
@@ -29,31 +32,26 @@ namespace SanityArchiver
 
         }
 
-        private void LeftBox_SelectedIndexChanged(object sender, EventArgs e)
+        public void ListItems(DirectoryInfo dir, ListBox box)
         {
-            String[] info = LeftBox.SelectedItem.ToString().Split(',');
-            String root = info[0];
+            box.Items.Clear();
+            if (!dir.Exists)
+            {
+                box.Items.Add("The specified directory does not exist.");
+                return;
+            }
 
-            LeftBrowser.Url = new Uri(@root);
+            foreach (DirectoryInfo directory in dir.GetDirectories())
+            {
+                box.Items.Add(directory.Name);
+            }
+
+            foreach (FileInfo files in dir.GetFiles())
+            {
+                box.Items.Add(files.Name);
+            }
         }
 
-        private void RightBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            String[] info = RightBox.SelectedItem.ToString().Split(',');
-            String root = info[0];
-
-            RightBrowser.Url = new Uri(@root);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            LeftBrowser.GoBack();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            RightBrowser.GoBack();
-        }
 
         static void ArchiveFile(DirectoryInfo archiveDir, FileInfo fileToArchive)
         {
@@ -77,7 +75,56 @@ namespace SanityArchiver
 
         }
 
+        private void LeftBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LeftDisplay.Items.Clear();
+            String[] info = LeftBox.SelectedItem.ToString().Split(',');
+            String root = info[0];
+            pathString = @root;
+            rootPath = @root;
+            DirectoryInfo rootDir = new DirectoryInfo(root);
+            ListItems(rootDir,LeftDisplay);
 
+
+
+        }
+
+        private void LeftDisplay_DoubleClick(object sender, EventArgs e)
+        {
+            String text = LeftDisplay.SelectedItem.ToString();
+            string path = @pathString + @"\" + text;
+            @pathString = @path;
+            DirectoryInfo currentDir = new DirectoryInfo(path);
+            ListItems(currentDir, LeftDisplay);
+
+
+        }
+
+        private void BackLeft_Click(object sender, EventArgs e)
+        {
+            pathString = rootPath;
+            DirectoryInfo currentDir = new DirectoryInfo(rootPath);
+            ListItems(currentDir, LeftDisplay);
+        }
+
+        private void CompressLeft_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                String text = LeftDisplay.SelectedItem.ToString();
+                DirectoryInfo currentDir = new DirectoryInfo(pathString);
+                string path = @pathString + @"\" + text;
+                FileInfo currentFile = new FileInfo(path);
+                ArchiveFile(currentDir, currentFile);
+                ListItems(currentDir, LeftDisplay);
+            }
+            catch (NullReferenceException exception)
+            {
+                LeftDisplay.Items.Clear();
+                LeftDisplay.Items.Add("No files selected!");
+            }
+
+        }
     }
 
 }
