@@ -1,6 +1,6 @@
 ﻿namespace SanityArchiver
 {
-    partial class Form1
+    partial class Decompress
     {
         /// <summary>
         /// Required designer variable.
@@ -28,49 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.LeftBrowser = new System.Windows.Forms.WebBrowser();
-            this.RightBrowser = new System.Windows.Forms.WebBrowser();
+            this.LeftDisplay = new System.Windows.Forms.ListBox();
             this.LeftBox = new System.Windows.Forms.ListBox();
-            this.RightBox = new System.Windows.Forms.ListBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.BackLeft = new System.Windows.Forms.Button();
             this.CompressLeft = new System.Windows.Forms.Button();
-            this.Display = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.FreeSpaceAmount = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.myConsole = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ReadText = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.Decrypt = new System.Windows.Forms.Button();
+            this.saveText = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.Hidden = new System.Windows.Forms.Button();
+            this.regex = new System.Windows.Forms.TextBox();
+            this.SearchButton = new System.Windows.Forms.Button();
+            this.Location = new System.Windows.Forms.Label();
+            this.FromPath = new System.Windows.Forms.TextBox();
+            this.ToPath = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.SetFilePath = new System.Windows.Forms.Button();
+            this.SetDestination = new System.Windows.Forms.Button();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // LeftDisplay
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.LeftBrowser, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.RightBrowser, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 59);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(990, 609);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // LeftBrowser
-            // 
-            this.LeftBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LeftBrowser.Location = new System.Drawing.Point(3, 3);
-            this.LeftBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.LeftBrowser.Name = "LeftBrowser";
-            this.LeftBrowser.Size = new System.Drawing.Size(489, 603);
-            this.LeftBrowser.TabIndex = 0;
-            // 
-            // RightBrowser
-            // 
-            this.RightBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RightBrowser.Location = new System.Drawing.Point(498, 3);
-            this.RightBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.RightBrowser.Name = "RightBrowser";
-            this.RightBrowser.Size = new System.Drawing.Size(489, 603);
-            this.RightBrowser.TabIndex = 1;
+            this.LeftDisplay.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.LeftDisplay.FormattingEnabled = true;
+            this.LeftDisplay.ItemHeight = 22;
+            this.LeftDisplay.Location = new System.Drawing.Point(0, 59);
+            this.LeftDisplay.Name = "LeftDisplay";
+            this.LeftDisplay.Size = new System.Drawing.Size(606, 576);
+            this.LeftDisplay.TabIndex = 0;
+            this.LeftDisplay.DoubleClick += new System.EventHandler(this.LeftDisplay_DoubleClick);
             // 
             // LeftBox
             // 
@@ -82,86 +77,288 @@
             this.LeftBox.TabIndex = 1;
             this.LeftBox.SelectedIndexChanged += new System.EventHandler(this.LeftBox_SelectedIndexChanged);
             // 
-            // RightBox
+            // BackLeft
             // 
-            this.RightBox.FormattingEnabled = true;
-            this.RightBox.ItemHeight = 16;
-            this.RightBox.Location = new System.Drawing.Point(498, 1);
-            this.RightBox.Name = "RightBox";
-            this.RightBox.Size = new System.Drawing.Size(131, 52);
-            this.RightBox.TabIndex = 2;
-            this.RightBox.SelectedIndexChanged += new System.EventHandler(this.RightBox_SelectedIndexChanged);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(636, 1);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Back";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.BackLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.BackLeft.Location = new System.Drawing.Point(531, 12);
+            this.BackLeft.Name = "BackLeft";
+            this.BackLeft.Size = new System.Drawing.Size(75, 49);
+            this.BackLeft.TabIndex = 3;
+            this.BackLeft.Text = "Back";
+            this.BackLeft.UseVisualStyleBackColor = true;
+            this.BackLeft.Click += new System.EventHandler(this.BackLeft_Click);
             // 
             // CompressLeft
             // 
-            this.CompressLeft.Location = new System.Drawing.Point(126, 31);
+            this.CompressLeft.Location = new System.Drawing.Point(773, 399);
             this.CompressLeft.Name = "CompressLeft";
-            this.CompressLeft.Size = new System.Drawing.Size(75, 23);
-            this.CompressLeft.TabIndex = 5;
+            this.CompressLeft.Size = new System.Drawing.Size(92, 30);
+            this.CompressLeft.TabIndex = 4;
             this.CompressLeft.Text = "Compress";
             this.CompressLeft.UseVisualStyleBackColor = true;
-            this.CompressLeft.Click += new System.EventHandler(this.CompressLeft_Click);
+            this.CompressLeft.Click += new System.EventHandler(this.CompressLeft_Click_1);
             // 
-            // Display
+            // label1
             // 
-            this.Display.Location = new System.Drawing.Point(208, 1);
-            this.Display.Multiline = true;
-            this.Display.Name = "Display";
-            this.Display.Size = new System.Drawing.Size(284, 52);
-            this.Display.TabIndex = 6;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(126, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(102, 22);
+            this.label1.TabIndex = 6;
+            this.label1.Tag = "0";
+            this.label1.Text = "Free space:";
+            // 
+            // FreeSpaceAmount
+            // 
+            this.FreeSpaceAmount.AutoSize = true;
+            this.FreeSpaceAmount.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.FreeSpaceAmount.Location = new System.Drawing.Point(225, 9);
+            this.FreeSpaceAmount.Name = "FreeSpaceAmount";
+            this.FreeSpaceAmount.Size = new System.Drawing.Size(47, 22);
+            this.FreeSpaceAmount.TabIndex = 7;
+            this.FreeSpaceAmount.Tag = "0";
+            this.FreeSpaceAmount.Text = "NaN";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(126, 1);
+            this.button1.Location = new System.Drawing.Point(773, 436);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Back";
+            this.button1.Size = new System.Drawing.Size(102, 29);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Decompress";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Form1
+            // myConsole
+            // 
+            this.myConsole.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.myConsole.Location = new System.Drawing.Point(612, 109);
+            this.myConsole.Multiline = true;
+            this.myConsole.Name = "myConsole";
+            this.myConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.myConsole.Size = new System.Drawing.Size(531, 283);
+            this.myConsole.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(808, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(155, 47);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Console";
+            // 
+            // ReadText
+            // 
+            this.ReadText.Location = new System.Drawing.Point(612, 398);
+            this.ReadText.Name = "ReadText";
+            this.ReadText.Size = new System.Drawing.Size(133, 31);
+            this.ReadText.TabIndex = 11;
+            this.ReadText.Text = "Open textfile";
+            this.ReadText.UseVisualStyleBackColor = true;
+            this.ReadText.Click += new System.EventHandler(this.ReadText_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(896, 398);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(103, 31);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "Encrypt file";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // Decrypt
+            // 
+            this.Decrypt.Location = new System.Drawing.Point(896, 436);
+            this.Decrypt.Name = "Decrypt";
+            this.Decrypt.Size = new System.Drawing.Size(97, 29);
+            this.Decrypt.TabIndex = 13;
+            this.Decrypt.Text = "Decrypt file";
+            this.Decrypt.UseVisualStyleBackColor = true;
+            this.Decrypt.Click += new System.EventHandler(this.Decrypt_Click);
+            // 
+            // saveText
+            // 
+            this.saveText.Location = new System.Drawing.Point(612, 435);
+            this.saveText.Name = "saveText";
+            this.saveText.Size = new System.Drawing.Size(143, 31);
+            this.saveText.TabIndex = 14;
+            this.saveText.Text = "Save to text";
+            this.saveText.UseVisualStyleBackColor = true;
+            this.saveText.Click += new System.EventHandler(this.saveText_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(1005, 399);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(97, 51);
+            this.button3.TabIndex = 15;
+            this.button3.Text = "Toggle Read-Only";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // Hidden
+            // 
+            this.Hidden.Location = new System.Drawing.Point(1005, 457);
+            this.Hidden.Name = "Hidden";
+            this.Hidden.Size = new System.Drawing.Size(97, 58);
+            this.Hidden.TabIndex = 16;
+            this.Hidden.Text = "Toggle Hidden";
+            this.Hidden.UseVisualStyleBackColor = true;
+            this.Hidden.Click += new System.EventHandler(this.Hidden_Click);
+            // 
+            // regex
+            // 
+            this.regex.Location = new System.Drawing.Point(0, 641);
+            this.regex.Name = "regex";
+            this.regex.Size = new System.Drawing.Size(185, 22);
+            this.regex.TabIndex = 17;
+            // 
+            // SearchButton
+            // 
+            this.SearchButton.Location = new System.Drawing.Point(192, 641);
+            this.SearchButton.Name = "SearchButton";
+            this.SearchButton.Size = new System.Drawing.Size(75, 23);
+            this.SearchButton.TabIndex = 18;
+            this.SearchButton.Text = "Search";
+            this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
+            // 
+            // Location
+            // 
+            this.Location.AutoSize = true;
+            this.Location.Location = new System.Drawing.Point(130, 35);
+            this.Location.Name = "Location";
+            this.Location.Size = new System.Drawing.Size(0, 17);
+            this.Location.TabIndex = 19;
+            // 
+            // FromPath
+            // 
+            this.FromPath.Location = new System.Drawing.Point(0, 31);
+            this.FromPath.Name = "FromPath";
+            this.FromPath.Size = new System.Drawing.Size(261, 22);
+            this.FromPath.TabIndex = 20;
+            // 
+            // ToPath
+            // 
+            this.ToPath.Location = new System.Drawing.Point(0, 83);
+            this.ToPath.Name = "ToPath";
+            this.ToPath.Size = new System.Drawing.Size(261, 22);
+            this.ToPath.TabIndex = 21;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.SetDestination);
+            this.panel1.Controls.Add(this.SetFilePath);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.FromPath);
+            this.panel1.Controls.Add(this.ToPath);
+            this.panel1.Location = new System.Drawing.Point(612, 535);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(381, 128);
+            this.panel1.TabIndex = 22;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(4, 8);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(66, 17);
+            this.label3.TabIndex = 22;
+            this.label3.Text = "File path:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(4, 60);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(111, 17);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "Destination path";
+            // 
+            // SetFilePath
+            // 
+            this.SetFilePath.Location = new System.Drawing.Point(267, 30);
+            this.SetFilePath.Name = "SetFilePath";
+            this.SetFilePath.Size = new System.Drawing.Size(111, 23);
+            this.SetFilePath.TabIndex = 24;
+            this.SetFilePath.Text = "Set file path";
+            this.SetFilePath.UseVisualStyleBackColor = true;
+            // 
+            // SetDestination
+            // 
+            this.SetDestination.Location = new System.Drawing.Point(267, 82);
+            this.SetDestination.Name = "SetDestination";
+            this.SetDestination.Size = new System.Drawing.Size(111, 23);
+            this.SetDestination.TabIndex = 25;
+            this.SetDestination.Text = "Set destination";
+            this.SetDestination.UseVisualStyleBackColor = true;
+            // 
+            // Decompress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ClientSize = new System.Drawing.Size(992, 665);
-            this.Controls.Add(this.Display);
-            this.Controls.Add(this.CompressLeft);
+            this.ClientSize = new System.Drawing.Size(1155, 713);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.Location);
+            this.Controls.Add(this.SearchButton);
+            this.Controls.Add(this.regex);
+            this.Controls.Add(this.Hidden);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.saveText);
+            this.Controls.Add(this.Decrypt);
             this.Controls.Add(this.button2);
+            this.Controls.Add(this.ReadText);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.myConsole);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.RightBox);
+            this.Controls.Add(this.FreeSpaceAmount);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.LeftDisplay);
+            this.Controls.Add(this.CompressLeft);
+            this.Controls.Add(this.BackLeft);
             this.Controls.Add(this.LeftBox);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "Form1";
+            this.Name = "Decompress";
             this.Text = "Form1";
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.WebBrowser LeftBrowser;
-        private System.Windows.Forms.WebBrowser RightBrowser;
         private System.Windows.Forms.ListBox LeftBox;
-        private System.Windows.Forms.ListBox RightBox;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ListBox LeftDisplay;
+        private System.Windows.Forms.Button BackLeft;
         private System.Windows.Forms.Button CompressLeft;
-        private System.Windows.Forms.TextBox Display;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label FreeSpaceAmount;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox myConsole;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button ReadText;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button Decrypt;
+        private System.Windows.Forms.Button saveText;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button Hidden;
+        private System.Windows.Forms.TextBox regex;
+        private System.Windows.Forms.Button SearchButton;
+        private System.Windows.Forms.Label Location;
+        private System.Windows.Forms.TextBox FromPath;
+        private System.Windows.Forms.TextBox ToPath;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button SetDestination;
+        private System.Windows.Forms.Button SetFilePath;
+        private System.Windows.Forms.Label label4;
     }
 }
 
