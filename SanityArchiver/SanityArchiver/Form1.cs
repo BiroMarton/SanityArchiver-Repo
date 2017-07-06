@@ -174,7 +174,7 @@ namespace SanityArchiver
             catch (NullReferenceException exception)
             {
 
-                myConsole.Text = "No files selected!";
+                myConsole.Text = "No file selected!";
             }
             catch (UnauthorizedAccessException ua)
             {
@@ -216,7 +216,7 @@ namespace SanityArchiver
             catch (NullReferenceException exception)
             {
                 
-                myConsole.Text = "No files selected!";
+                myConsole.Text = "No file selected!";
             }
             catch (UnauthorizedAccessException ua)
             {
@@ -241,7 +241,7 @@ namespace SanityArchiver
             catch (NullReferenceException exception)
             {
                 
-                myConsole.Text = "No files selected!";
+                myConsole.Text = "No file selected!";
             }
             catch (UnauthorizedAccessException ua)
             {
@@ -270,7 +270,7 @@ namespace SanityArchiver
             catch (NullReferenceException exception)
             {
 
-                myConsole.Text = "No files selected!";
+                myConsole.Text = "No file selected!";
             }
             catch (UnauthorizedAccessException ua)
             {
@@ -316,7 +316,7 @@ namespace SanityArchiver
             catch (NullReferenceException exception)
             {
 
-                myConsole.Text = "No files selected!";
+                myConsole.Text = "No file selected!";
             }
             catch (UnauthorizedAccessException ua)
             {
@@ -365,7 +365,7 @@ namespace SanityArchiver
             catch (NullReferenceException exception)
             {
 
-                myConsole.Text = "No files selected!";
+                myConsole.Text = "No file selected!";
             }
             catch (UnauthorizedAccessException ua)
             {
@@ -391,7 +391,7 @@ namespace SanityArchiver
             catch (NullReferenceException exception)
             {
 
-                myConsole.Text = "No files selected!";
+                myConsole.Text = "No file selected!";
             }
             catch (UnauthorizedAccessException ua)
             {
@@ -427,7 +427,7 @@ namespace SanityArchiver
             catch (NullReferenceException exception)
             {
 
-                myConsole.Text = "No files selected!";
+                myConsole.Text = "No file selected!";
             }
             catch (UnauthorizedAccessException ua)
             {
@@ -467,7 +467,7 @@ namespace SanityArchiver
             catch (NullReferenceException exception)
             {
 
-                myConsole.Text = "No files selected!";
+                myConsole.Text = "No file selected!";
             }
             catch (UnauthorizedAccessException ua)
             {
@@ -571,7 +571,7 @@ namespace SanityArchiver
             catch (NullReferenceException exception)
             {
 
-                myConsole.Text = "No files selected!";
+                myConsole.Text = "No file selected!";
             }
             catch (UnauthorizedAccessException ua)
             {
@@ -602,7 +602,7 @@ namespace SanityArchiver
             catch (NullReferenceException exception)
             {
 
-                myConsole.Text = "No files selected!";
+                myConsole.Text = "No file selected!";
             }
             catch (UnauthorizedAccessException ua)
             {
