@@ -20,10 +20,12 @@ namespace SanityArchiver
         DriveInfo[] allDrives = DriveInfo.GetDrives();
         private String pathString;
         private string rootPath;
+        private string fileName;
 
         public Decompress()
         {
             InitializeComponent();
+            panel1.Visible = false;
 
             foreach (DriveInfo drive in allDrives)
             {
@@ -139,13 +141,16 @@ namespace SanityArchiver
                 pathString = @root;
                 rootPath = @root;
                 Location.Text = @root;
+                long divide = 1073741824;
                 DirectoryInfo rootDir = new DirectoryInfo(root);
                 ListItems(rootDir, LeftDisplay);
-                FreeSpaceAmount.Text = allDrives[LeftBox.SelectedIndex].AvailableFreeSpace / 1048576 + " GB";
+                FreeSpaceAmount.Text = allDrives[LeftBox.SelectedIndex].AvailableFreeSpace / divide + " GB";
+                OccupiedAmount.Text = (allDrives[LeftBox.SelectedIndex].TotalSize - allDrives[LeftBox.SelectedIndex].AvailableFreeSpace) / divide + " GB";
             }
             catch (IOException exception)
             {
                 FreeSpaceAmount.Text = "NaN";
+                OccupiedAmount.Text = "NaN";
                 LeftDisplay.Items.Clear();
                 myConsole.Text = "Can not open that disc.";
             }
@@ -257,7 +262,7 @@ namespace SanityArchiver
             DirectoryInfo currentDir = new DirectoryInfo(pathString);
             string path = @pathString + @"\" + text;
 
-            string content = System.IO.File.ReadAllText(path);
+            string content = System.IO.File.ReadAllText(path, Encoding.Default);
             myConsole.Text = content;
         }
 
@@ -269,21 +274,21 @@ namespace SanityArchiver
                 String text = LeftDisplay.SelectedItem.ToString();
                 DirectoryInfo currentDir = new DirectoryInfo(pathString);
                 string path = @pathString + @"\" + text;
-                string content = System.IO.File.ReadAllText(path);
+                string content = System.IO.File.ReadAllText(path, Encoding.Default);
 
                 FileStream stream = new FileStream(path,
                     FileMode.OpenOrCreate, FileAccess.Write);
 
                 DESCryptoServiceProvider cryptic = new DESCryptoServiceProvider();
 
-                cryptic.Key = ASCIIEncoding.ASCII.GetBytes("ABCDEFGH");
-                cryptic.IV = ASCIIEncoding.ASCII.GetBytes("ABCDEFGH");
+                cryptic.Key = Encoding.Default.GetBytes("ABCDEFGH");
+                cryptic.IV = Encoding.Default.GetBytes("ABCDEFGH");
 
                 CryptoStream crStream = new CryptoStream(stream,
                     cryptic.CreateEncryptor(), CryptoStreamMode.Write);
 
 
-                byte[] data = ASCIIEncoding.ASCII.GetBytes(content);
+                byte[] data = Encoding.Default.GetBytes(content);
 
                 crStream.Write(data, 0, data.Length);
 
@@ -321,13 +326,13 @@ namespace SanityArchiver
 
                 DESCryptoServiceProvider cryptic = new DESCryptoServiceProvider();
 
-                cryptic.Key = ASCIIEncoding.ASCII.GetBytes("ABCDEFGH");
-                cryptic.IV = ASCIIEncoding.ASCII.GetBytes("ABCDEFGH");
+                cryptic.Key = Encoding.Default.GetBytes("ABCDEFGH");
+                cryptic.IV = Encoding.Default.GetBytes("ABCDEFGH");
 
                 CryptoStream crStream = new CryptoStream(stream,
                     cryptic.CreateDecryptor(), CryptoStreamMode.Read);
 
-                StreamReader reader = new StreamReader(crStream);
+                StreamReader reader = new StreamReader(crStream,Encoding.Default);
 
                 string data = reader.ReadToEnd();
 
@@ -338,7 +343,7 @@ namespace SanityArchiver
 
 
 
-                File.WriteAllText(path,data);
+                File.WriteAllText(path,data, Encoding.Default);
 
                 myConsole.Text = "File decrypted.";
 
@@ -365,7 +370,7 @@ namespace SanityArchiver
 
                 string content = myConsole.Text;
 
-                File.WriteAllText(path, content);
+                File.WriteAllText(path, content, Encoding.Default);
 
                 myConsole.Text = "Textfile saved.";
             }
@@ -465,6 +470,127 @@ namespace SanityArchiver
 
             RegExSearch(currentDir,LeftDisplay,regex.Text);
         }
+
+        private void copyMove_Click(object sender, EventArgs e)
+        {
+            panel1.Visible = !panel1.Visible;
+        }
+
+        private void SetFilePath_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                String text = LeftDisplay.SelectedItem.ToString();
+                fileName = @"\" + text;
+                FromPath.Text = Location.Text + @"\" + text;
+            }
+            catch (NullReferenceException exception)
+            {
+
+                myConsole.Text = "No source path or destination path elected.";
+            }
+
+        }
+
+        private void SetDestination_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ToPath.Text = Location.Text;
+            }
+            catch (NullReferenceException exception)
+            {
+
+                myConsole.Text = "No source path or destination path elected.";
+            }
+
+        }
+
+        private void CopyButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string source = FromPath.Text;
+                string destination = ToPath.Text + fileName;
+                DirectoryInfo currentDir = new DirectoryInfo(@ToPath.Text);
+                Microsoft.VisualBasic.FileSystem.FileCopy(source, destination);
+                myConsole.Text = "Copy completed.";
+                ListItems(currentDir, LeftDisplay);
+            }
+            catch (NullReferenceException exception)
+            {
+
+                myConsole.Text = "No source path or destination path elected.";
+            }
+            catch (UnauthorizedAccessException ua)
+            {
+
+                myConsole.Text = "You do not have permission for that action.";
+            }
+            catch (ArgumentNullException ae)
+            {
+                myConsole.Text = "No source path or destination path elected.";
+            }
+
+
+        }
+
+        private void MoveTo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string source = FromPath.Text;
+                string destination = ToPath.Text + fileName;
+                DirectoryInfo currentDir = new DirectoryInfo(@ToPath.Text);
+                Microsoft.VisualBasic.FileSystem.FileCopy(source, destination);
+                File.Delete(source);
+                myConsole.Text = "File moved to the new destination.";
+                ListItems(currentDir, LeftDisplay);
+            }
+            catch (NullReferenceException exception)
+            {
+
+                myConsole.Text = "No files selected!";
+            }
+            catch (UnauthorizedAccessException ua)
+            {
+
+                myConsole.Text = "You do not have permission for that action.";
+            }
+
+            catch (ArgumentNullException ae)
+            {
+                myConsole.Text = "No source path or destination path elected.";
+            }
+
+
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                String text = LeftDisplay.SelectedItem.ToString();
+                fileName = @"\" + text;
+                string path = Location.Text + fileName;
+                File.Delete(path);
+                DirectoryInfo currentDir = new DirectoryInfo(Location.Text);
+                ListItems(currentDir, LeftDisplay);
+                myConsole.Text = "Deletion complete.";
+            }
+            catch (NullReferenceException exception)
+            {
+
+                myConsole.Text = "No files selected!";
+            }
+            catch (UnauthorizedAccessException ua)
+            {
+
+                myConsole.Text = "You do not have permission for that action.";
+            }
+
+        }
+
 
     }
 

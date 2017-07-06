@@ -49,10 +49,16 @@
             this.FromPath = new System.Windows.Forms.TextBox();
             this.ToPath = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.SetFilePath = new System.Windows.Forms.Button();
+            this.MoveTo = new System.Windows.Forms.Button();
+            this.CopyButton = new System.Windows.Forms.Button();
             this.SetDestination = new System.Windows.Forms.Button();
+            this.SetFilePath = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.copyMove = new System.Windows.Forms.Button();
+            this.DeleteButton = new System.Windows.Forms.Button();
+            this.Occupied = new System.Windows.Forms.Label();
+            this.OccupiedAmount = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -113,7 +119,7 @@
             // 
             this.FreeSpaceAmount.AutoSize = true;
             this.FreeSpaceAmount.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.FreeSpaceAmount.Location = new System.Drawing.Point(225, 9);
+            this.FreeSpaceAmount.Location = new System.Drawing.Point(234, 9);
             this.FreeSpaceAmount.Name = "FreeSpaceAmount";
             this.FreeSpaceAmount.Size = new System.Drawing.Size(47, 22);
             this.FreeSpaceAmount.TabIndex = 7;
@@ -193,7 +199,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(1005, 399);
+            this.button3.Location = new System.Drawing.Point(1046, 399);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(97, 51);
             this.button3.TabIndex = 15;
@@ -203,7 +209,7 @@
             // 
             // Hidden
             // 
-            this.Hidden.Location = new System.Drawing.Point(1005, 457);
+            this.Hidden.Location = new System.Drawing.Point(1046, 457);
             this.Hidden.Name = "Hidden";
             this.Hidden.Size = new System.Drawing.Size(97, 58);
             this.Hidden.TabIndex = 16;
@@ -231,7 +237,7 @@
             // Location
             // 
             this.Location.AutoSize = true;
-            this.Location.Location = new System.Drawing.Point(130, 35);
+            this.Location.Location = new System.Drawing.Point(12, 666);
             this.Location.Name = "Location";
             this.Location.Size = new System.Drawing.Size(0, 17);
             this.Location.TabIndex = 19;
@@ -252,25 +258,58 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.MoveTo);
+            this.panel1.Controls.Add(this.CopyButton);
             this.panel1.Controls.Add(this.SetDestination);
             this.panel1.Controls.Add(this.SetFilePath);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.FromPath);
             this.panel1.Controls.Add(this.ToPath);
-            this.panel1.Location = new System.Drawing.Point(612, 535);
+            this.panel1.Location = new System.Drawing.Point(612, 521);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(381, 128);
+            this.panel1.Size = new System.Drawing.Size(387, 199);
             this.panel1.TabIndex = 22;
             // 
-            // label3
+            // MoveTo
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 17);
-            this.label3.TabIndex = 22;
-            this.label3.Text = "File path:";
+            this.MoveTo.Location = new System.Drawing.Point(133, 145);
+            this.MoveTo.Name = "MoveTo";
+            this.MoveTo.Size = new System.Drawing.Size(75, 37);
+            this.MoveTo.TabIndex = 27;
+            this.MoveTo.Text = "Move to";
+            this.MoveTo.UseVisualStyleBackColor = true;
+            this.MoveTo.Click += new System.EventHandler(this.MoveTo_Click);
+            // 
+            // CopyButton
+            // 
+            this.CopyButton.Location = new System.Drawing.Point(41, 145);
+            this.CopyButton.Name = "CopyButton";
+            this.CopyButton.Size = new System.Drawing.Size(75, 37);
+            this.CopyButton.TabIndex = 26;
+            this.CopyButton.Text = "Copy";
+            this.CopyButton.UseVisualStyleBackColor = true;
+            this.CopyButton.Click += new System.EventHandler(this.CopyButton_Click);
+            // 
+            // SetDestination
+            // 
+            this.SetDestination.Location = new System.Drawing.Point(267, 82);
+            this.SetDestination.Name = "SetDestination";
+            this.SetDestination.Size = new System.Drawing.Size(111, 46);
+            this.SetDestination.TabIndex = 25;
+            this.SetDestination.Text = "Set destination";
+            this.SetDestination.UseVisualStyleBackColor = true;
+            this.SetDestination.Click += new System.EventHandler(this.SetDestination_Click);
+            // 
+            // SetFilePath
+            // 
+            this.SetFilePath.Location = new System.Drawing.Point(267, 8);
+            this.SetFilePath.Name = "SetFilePath";
+            this.SetFilePath.Size = new System.Drawing.Size(111, 46);
+            this.SetFilePath.TabIndex = 24;
+            this.SetFilePath.Text = "Set file path";
+            this.SetFilePath.UseVisualStyleBackColor = true;
+            this.SetFilePath.Click += new System.EventHandler(this.SetFilePath_Click);
             // 
             // label4
             // 
@@ -281,23 +320,54 @@
             this.label4.TabIndex = 23;
             this.label4.Text = "Destination path";
             // 
-            // SetFilePath
+            // label3
             // 
-            this.SetFilePath.Location = new System.Drawing.Point(267, 30);
-            this.SetFilePath.Name = "SetFilePath";
-            this.SetFilePath.Size = new System.Drawing.Size(111, 23);
-            this.SetFilePath.TabIndex = 24;
-            this.SetFilePath.Text = "Set file path";
-            this.SetFilePath.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(4, 8);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(66, 17);
+            this.label3.TabIndex = 22;
+            this.label3.Text = "File path:";
             // 
-            // SetDestination
+            // copyMove
             // 
-            this.SetDestination.Location = new System.Drawing.Point(267, 82);
-            this.SetDestination.Name = "SetDestination";
-            this.SetDestination.Size = new System.Drawing.Size(111, 23);
-            this.SetDestination.TabIndex = 25;
-            this.SetDestination.Text = "Set destination";
-            this.SetDestination.UseVisualStyleBackColor = true;
+            this.copyMove.Location = new System.Drawing.Point(1046, 521);
+            this.copyMove.Name = "copyMove";
+            this.copyMove.Size = new System.Drawing.Size(97, 63);
+            this.copyMove.TabIndex = 23;
+            this.copyMove.Text = "Copy/Move file";
+            this.copyMove.UseVisualStyleBackColor = true;
+            this.copyMove.Click += new System.EventHandler(this.copyMove_Click);
+            // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Location = new System.Drawing.Point(1046, 603);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(97, 46);
+            this.DeleteButton.TabIndex = 24;
+            this.DeleteButton.Text = "Delete file";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
+            // Occupied
+            // 
+            this.Occupied.AutoSize = true;
+            this.Occupied.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Occupied.Location = new System.Drawing.Point(126, 31);
+            this.Occupied.Name = "Occupied";
+            this.Occupied.Size = new System.Drawing.Size(147, 22);
+            this.Occupied.TabIndex = 25;
+            this.Occupied.Text = "Occupied space: ";
+            // 
+            // OccupiedAmount
+            // 
+            this.OccupiedAmount.AutoSize = true;
+            this.OccupiedAmount.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.OccupiedAmount.Location = new System.Drawing.Point(279, 34);
+            this.OccupiedAmount.Name = "OccupiedAmount";
+            this.OccupiedAmount.Size = new System.Drawing.Size(47, 22);
+            this.OccupiedAmount.TabIndex = 26;
+            this.OccupiedAmount.Text = "NaN";
             // 
             // Decompress
             // 
@@ -305,6 +375,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(1155, 713);
+            this.Controls.Add(this.OccupiedAmount);
+            this.Controls.Add(this.Occupied);
+            this.Controls.Add(this.DeleteButton);
+            this.Controls.Add(this.copyMove);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.Location);
             this.Controls.Add(this.SearchButton);
@@ -359,6 +433,12 @@
         private System.Windows.Forms.Button SetDestination;
         private System.Windows.Forms.Button SetFilePath;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button copyMove;
+        private System.Windows.Forms.Button MoveTo;
+        private System.Windows.Forms.Button CopyButton;
+        private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Label Occupied;
+        private System.Windows.Forms.Label OccupiedAmount;
     }
 }
 
