@@ -258,12 +258,26 @@ namespace SanityArchiver
 
         private void ReadText_Click(object sender, EventArgs e)
         {
-            String text = LeftDisplay.SelectedItem.ToString();
-            DirectoryInfo currentDir = new DirectoryInfo(pathString);
-            string path = @pathString + @"\" + text;
+            try
+            {
+                String text = LeftDisplay.SelectedItem.ToString();
+                DirectoryInfo currentDir = new DirectoryInfo(pathString);
+                string path = @pathString + @"\" + text;
 
-            string content = System.IO.File.ReadAllText(path, Encoding.Default);
-            myConsole.Text = content;
+                string content = System.IO.File.ReadAllText(path, Encoding.Default);
+                myConsole.Text = content;
+            }
+            catch (NullReferenceException exception)
+            {
+
+                myConsole.Text = "No files selected!";
+            }
+            catch (UnauthorizedAccessException ua)
+            {
+
+                myConsole.Text = "You do not have permission for that action.";
+            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -464,11 +478,18 @@ namespace SanityArchiver
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+                DirectoryInfo currentDir = new DirectoryInfo(pathString);
 
-            
-            DirectoryInfo currentDir = new DirectoryInfo(pathString);
+                RegExSearch(currentDir, LeftDisplay, regex.Text);
+            }
+            catch (ArgumentNullException exception)
+            {
 
-            RegExSearch(currentDir,LeftDisplay,regex.Text);
+                myConsole.Text = "Select a location to search first!";
+            }
+
         }
 
         private void copyMove_Click(object sender, EventArgs e)
@@ -527,9 +548,9 @@ namespace SanityArchiver
 
                 myConsole.Text = "You do not have permission for that action.";
             }
-            catch (ArgumentNullException ae)
+            catch (ArgumentException ae)
             {
-                myConsole.Text = "No source path or destination path elected.";
+                myConsole.Text = "No path elected.";
             }
 
 
@@ -558,9 +579,9 @@ namespace SanityArchiver
                 myConsole.Text = "You do not have permission for that action.";
             }
 
-            catch (ArgumentNullException ae)
+            catch (ArgumentException ae)
             {
-                myConsole.Text = "No source path or destination path elected.";
+                myConsole.Text = "No path elected.";
             }
 
 
